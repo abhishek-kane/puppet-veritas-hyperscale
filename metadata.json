@@ -1,0 +1,14 @@
+{
+  "name": "veritas-hyperscale",
+  "version": "0.1.0",
+  "author": "Abhishek Kane <abhishek.kane@veritas.com>",
+  "summary": "Veritas HyperScale Bin installer.",
+  "license": "Apache 2.0",
+  "source": "TODO",
+  "project_page": "TODO",
+  "issues_url": "TODO",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+
