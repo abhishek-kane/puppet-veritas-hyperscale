@@ -1,5 +1,5 @@
 {
-  "name": "veritas-hyperscale",
+  "name": "veritas_hyperscale",
   "version": "0.1.0",
   "author": "Abhishek Kane <abhishek.kane@veritas.com>",
   "summary": "Veritas HyperScale Bin installer.",

@@ -20,7 +20,7 @@
 #
 # === Example
 #
-#class {'veritas-hyperscale':
+#class {'veritas_hyperscale':
 #    os_user => "admin",
 #    os_passwd => "root123",
 #    os_auth_url => "http://controller:35357/v3",
@@ -28,6 +28,7 @@
 #    os_project_name => "admin",
 #    os_project_domain_name => "default",
 #    os_user_domain_name => "default",
+#    path => "/root/veritas_hyperscale",
 #}
 #
 # === Authors
@@ -36,9 +37,9 @@
 #
 # === Copyright
 #
-# Copyright 2017 Abhishek Kane, unless otherwise noted.
+# Copyright (c) 2017 Veritas Technologies LLC.
 #
-class  veritas-hyperscale (
+class  veritas_hyperscale (
     $os_user = $os_user,
     $os_passwd = $os_passwd,
     $os_auth_url = $os_auth_url,
@@ -46,5 +47,18 @@ class  veritas-hyperscale (
     $os_project_name = $os_project_name,
     $os_project_domain_name = $os_project_domain_name,
     $os_user_domain_name = $os_user_domain_name,
+    $path = $path,
+    $platform = $::osfamily,
 )
-{ }
+{
+    # Bin file
+    file {"$path":
+        ensure => 'directory',
+        source => "puppet:///modules/veritas_hyperscale",
+        path => "$path",
+        recurse => 'remote',
+        owner => 'root',
+        group => 'root',
+        mode => '744',
+    }
+}

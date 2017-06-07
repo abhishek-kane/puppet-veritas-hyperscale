@@ -5,9 +5,6 @@
 # [bin_name]
 #   The binary name
 #
-# [path]
-#   The directory on controller where the bin file gets copied.
-#
 # [operation]
 #   install/uninstall
 #
@@ -20,9 +17,8 @@
 #
 # === Example
 #
-#	class {'veritas-hyperscale::controller':
+#	class {'veritas_hyperscale::controller':
 #		bin_name => "HyperScale_release.ubuntu.bin",
-#		path => "/root/veritas-hyperscale",
 #		operation => "install",
 #		management_ip => "172.101.101.1",
 #		mysql_root_passwd => "mysqlpasswd",
@@ -34,29 +30,19 @@
 #
 # === Copyright
 #
-# Copyright 2017 Abhishek Kane, unless otherwise noted.
+# Copyright (c) 2017 Veritas Technologies LLC.
 #
-class  veritas-hyperscale::controller (
+class  veritas_hyperscale::controller (
 	$bin_name = $bin_name,
-	$path = $path,
 	$operation = $operation,
 	$management_ip = $management_ip,
 	$mysql_root_passwd = $mysql_root_passwd,
-) inherits veritas-hyperscale
+) inherits veritas_hyperscale
 {
-	# Bin file
-	file {"$path":
-		ensure => 'directory',
-		before => File['bin'],
-		owner => 'root',
-		group => 'root',
-		mode => '744',
-	}
-
 	file {'bin':
 		ensure => 'file',
 		before => File['installer'],
-		source => "puppet:///modules/veritas-hyperscale/$bin_name",
+		source => "puppet:///modules/veritas_hyperscale/$bin_name",
 		path => "/$path/$bin_name",
 		owner => 'root',
 		group => 'root',
@@ -67,7 +53,7 @@ class  veritas-hyperscale::controller (
 		# The input to bin
 		file {'installer':
 			ensure => 'file',
-			source => 'puppet:///modules/veritas-hyperscale/install_bin.sh',
+			source => 'puppet:///modules/veritas_hyperscale/install_bin.sh',
 			path => "/$path/install_bin.sh",
 			owner => 'root',
 			group => 'root',

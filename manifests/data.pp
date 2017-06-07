@@ -22,7 +22,7 @@
 #
 # === Example
 #
-#    class {'veritas-hyperscale::data':
+#    class {'veritas_hyperscale::data':
 #        operation => "dn-add",
 #        dn_management_ip => "172.101.101.1",
 #        data_disks => ["/dev/sdb"],
@@ -37,9 +37,9 @@
 #
 # === Copyright
 #
-# Copyright 2017 Abhishek Kane, unless otherwise noted.
+# Copyright (c) 2017 Veritas Technologies LLC.
 #
-class  veritas-hyperscale::data (
+class  veritas_hyperscale::data (
     $operation = $operation,
     $dn_management_ip = $dn_management_ip,
     $data_disks = $data_disks,
@@ -47,7 +47,7 @@ class  veritas-hyperscale::data (
     $meta_disk = $meta_disk,
     $dn_data_interface = $dn_data_interface,
     $dn_root_passwd = $dn_root_passwd,
-) inherits veritas-hyperscale
+) inherits veritas_hyperscale
 {
 	if $operation == "dn-add" {
 		# Execute only once.

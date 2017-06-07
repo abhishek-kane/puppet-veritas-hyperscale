@@ -19,7 +19,7 @@
 #
 # === Example
 #
-#    class {'veritas-hyperscale::compute':
+#    class {'veritas_hyperscale::compute':
 #        operation => "compute-enable",
 #        cn_management_ip => "172.101.101.3",
 #        data_disks => ["/dev/sdb"],
@@ -33,16 +33,16 @@
 #
 # === Copyright
 #
-# Copyright 2017 Abhishek Kane, unless otherwise noted.
+# Copyright (c) 2017 Veritas Technologies LLC.
 #
-class  veritas-hyperscale::compute (
+class  veritas_hyperscale::compute (
     $operation = $operation,
     $cn_management_ip = $cn_management_ip,
     $data_disks = $data_disks,
     $data_disk_str = join($data_disks, ","),
     $meta_disk = $meta_disk,
     $cn_root_passwd = $cn_root_passwd,
-) inherits veritas-hyperscale
+) inherits veritas_hyperscale
 {
 	if $operation == "compute-enable" {
 		# Execute only once.

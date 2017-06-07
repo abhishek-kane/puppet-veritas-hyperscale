@@ -17,7 +17,7 @@ Install the Veritas HyperScale bin on the OpenStack controller.
 
 Tested with puppet version 3.8.5.
 The bin installation works only on the OpenStack controller.
-Create '/etc/puppet/modules/veritas-hyperscale/files' directory and copy the downloaded bin to this directory.
+Create '/etc/puppet/modules/veritas_hyperscale/files' directory and copy the downloaded bin to this directory.
 
 ## Usage
 
