@@ -21,9 +21,7 @@ CMD_RABBITMQADMIN=/opt/VRTSofcore/adm/rabbitmqadmin
 # Enable "rabbitmq_management" plugin.
 $CMD_RABBITMQA_PLUGIN enable rabbitmq_management
 
-# Add hypescale user and set permissions.
-$CMD_RABBITMQCTL add_user hyperscale elacsrepyh
-$CMD_RABBITMQCTL set_permissions -p / hyperscale ".*" ".*" ".*"
+# Add user tags
 $CMD_RABBITMQCTL set_user_tags hypescale management
 
 #TODO: check file and add hyperscale spefic configuration to rabbitmq-env.conf.
