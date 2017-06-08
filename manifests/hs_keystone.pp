@@ -26,11 +26,48 @@ class  veritas_hyperscale::hs_keystone (
     require veritas_hyperscale
     require veritas_hyperscale::controller_pkg_inst
 
-    # Execute only once.
-    exec {'hs_keystone':
-        path   => '/usr/bin:/usr/sbin:/bin',
-        creates => "/var/opt/VRTSofcore/.hs_openstack_configured",
-        environment => ["HOME=/root", "OS_AUTH_URL=$os_auth_url", "OS_IDENTITY_API_VERSION=$os_identity_api_ver", "OS_USERNAME=$os_user", "OS_PASSWORD=$os_passwd", "OS_PROJECT_DOMAIN_NAME=$os_project_domain_name", "OS_PROJECT_NAME=$os_project_name", "OS_USER_DOMAIN_NAME=$os_user_domain_name", "platform=$platform"],
-        command => "/$path/scripts/hs_keystone.sh $keystone_ip",
+    class { '::keystone::service':
+        ensure         => 'running',
+        service_name   => 'hyperscale',
+        enable         => true,
+    }
+
+    keystone_user { 'hyperscale':
+        ensure  => present,
+        enabled => true,
+        email   => 'hyperscale@localhost',
+    }
+
+    keystone_user_role { 'hyperscale@default':
+        roles   => ['admin'],
+        ensure  => present,
+        require => Class['::keystone::roles::admin'],
+    }
+
+    keystone_user { '_proxy_':
+        ensure  => present,
+        enabled => true,
+    }
+
+    keystone_user_role { '_proxy_@admin':
+        roles   => ['admin'],
+        ensure  => present,
+        require => Class['::keystone::roles::admin'],
+    }
+
+    keystone_role { 'infra_admin':
+      ensure => present,
+    }
+
+    keystone_user_role { 'admin@admin':
+        roles   => ['infra_admin'],
+        ensure  => present,
+        require => Class['::keystone::roles::admin'],
+    }
+
+    class { 'keystone::endpoint':
+        public_url   => "http://$keystone_ip:8753/v1/%(tenant_id)s",
+        admin_url    => "http://$keystone_ip:8753/v1/%(tenant_id)s",
+        internal_url => "http://$keystone_ip:8753/v1/%(tenant_id)s",
     }
 }
