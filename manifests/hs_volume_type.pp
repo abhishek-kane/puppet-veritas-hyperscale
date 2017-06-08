@@ -21,9 +21,9 @@ class  veritas_hyperscale::hs_volume_type (
 
     # Execute only once.
     exec {'hs_volume_type':
-        path   => '/usr/bin:/usr/sbin:/bin',
-        creates => "/var/opt/VRTSofcore/.hs_volume_type_created",
+        path        => '/usr/bin:/usr/sbin:/bin',
+        creates     => "/var/opt/VRTSofcore/.hs_volume_type_created",
         environment => ["HOME=/root", "OS_AUTH_URL=$os_auth_url", "OS_IDENTITY_API_VERSION=$os_identity_api_ver", "OS_USERNAME=$os_user", "OS_PASSWORD=$os_passwd", "OS_PROJECT_DOMAIN_NAME=$os_project_domain_name", "OS_PROJECT_NAME=$os_project_name", "OS_USER_DOMAIN_NAME=$os_user_domain_name"],
-        command => "/$path/scripts/hs_volume_type.sh",
+        command     => "/$path/scripts/hs_volume_type.sh",
     }
 }

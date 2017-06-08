@@ -36,120 +36,120 @@ class veritas_hyperscale::controller_pkg_inst (
 	if $platform == "redhat" {
 		$provider1 = "yum"
 		package { 'vrtsofcore':
-			ensure => $op,
+			ensure   => $op,
 			provider => 'rpm',
-			source => "$path/packages/VRTSofcore-1.0.0.100-RHEL7.x86_64.rpm",
+			source   => "$path/packages/VRTSofcore-1.0.0.100-RHEL7.x86_64.rpm",
 			}
 
 		package { 'vrtsofmn':
-			ensure => $op,
+			ensure   => $op,
 			provider => 'rpm',
-			source => "$path/packages/VRTSofmn-1.0.0.100-RHEL7.x86_64.rpm",
-			require => Package["vrtsofcore"],
+			source   => "$path/packages/VRTSofmn-1.0.0.100-RHEL7.x86_64.rpm",
+			require  => Package["vrtsofcore"],
 			}
 
 		package { 'vrtsofui':
-			ensure => $op,
+			ensure   => $op,
 			provider => 'rpm',
-			source => "$path/packages/VRTSofui-1.0.0.100-RHEL7.x86_64.rpm",
+			source   => "$path/packages/VRTSofui-1.0.0.100-RHEL7.x86_64.rpm",
 			}
 
 		package { 'hyperscale-ceilometer':
-			ensure => $op,
+			ensure   => $op,
 			provider => 'rpm',
-			source => "$path/packages/controller-ceilometer*.rpm",
+			source   => "$path/packages/controller-ceilometer*.rpm",
 			}
 
 		package { 'vrtsofspt':
-			ensure => $op,
+			ensure   => $op,
 			provider => 'rpm',
-			source => "$path/packages/VRTSofspt-1.0.0.100-RHEL7.x86_64.rpm",
+			source   => "$path/packages/VRTSofspt-1.0.0.100-RHEL7.x86_64.rpm",
 			}
 	}
 	else {
 		$provider1 = "apt"
 		package { 'vrtsofcore':
-			ensure => $op,
+			ensure   => $op,
 			provider => 'dpkg',
-			source => "$path/packages/vrtsofcore_1.0.0.100-UBUNTU16_amd64.deb",
+			source   => "$path/packages/vrtsofcore_1.0.0.100-UBUNTU16_amd64.deb",
 			}
 
 		package { 'vrtsofmn':
-			ensure => $op,
+			ensure   => $op,
 			provider => 'dpkg',
-			source => "$path/packages/vrtsofmn_1.0.0.100-UBUNTU16_amd64.deb",
-			require => Package["vrtsofcore"],
+			source   => "$path/packages/vrtsofmn_1.0.0.100-UBUNTU16_amd64.deb",
+			require  => Package["vrtsofcore"],
 			}
 
 		package { 'vrtsofspt':
-			ensure => $op,
+			ensure   => $op,
 			provider => 'dpkg',
-			source => "$path/packages/vrtsofspt_1.0.0.100-UBUNTU16_amd64.deb",
+			source   => "$path/packages/vrtsofspt_1.0.0.100-UBUNTU16_amd64.deb",
 			}
 
 		package { 'ipcalc':
-			ensure => installed,
+			ensure   => installed,
 			provider => $provider1,
 			}
 
 		package { 'dpkg-dev':
-			ensure => installed,
+			ensure   => installed,
 			provider => $provider1,
 			}
 
 		package { 'python-mysqldb':
-			ensure => installed,
+			ensure   => installed,
 			provider => $provider1,
 			}
 
 		package { 'libcurl4-openssl-dev':
-			ensure => installed,
+			ensure   => installed,
 			provider => $provider1,
 			}
 	}
 
 	package { 'rabbitmq-server':
-		ensure => installed,
+		ensure   => installed,
 		provider => $provider1,
 		}
 
 	package { 'crudini':
-		ensure => installed,
+		ensure   => installed,
 		provider => $provider1,
 		}
 
 	package { 'python-amqp':
-		ensure => installed,
+		ensure   => installed,
 		provider => $provider1,
 		}
 
 	package { 'python-kombu':
-		ensure => installed,
+		ensure   => installed,
 		provider => $provider1,
 		}
 
 	package { 'python-kazoo':
-		ensure => installed,
+		ensure   => installed,
 		provider => $provider1,
 		}
 
 	package { 'python-anyjson':
-		ensure => installed,
+		ensure   => installed,
 		provider => $provider1,
 		}
 
 	package { 'python-sqlalchemy':
-		ensure => installed,
+		ensure   => installed,
 		provider => $provider1,
 		}
 
 	package { 'lvm2':
-		ensure => installed,
+		ensure   => installed,
 		provider => $provider1,
 		}
 
 	package { 'coreutils':
-		ensure => installed,
+		ensure   => installed,
 		provider => $provider1,
 		}
 }

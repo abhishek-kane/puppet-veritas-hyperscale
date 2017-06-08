@@ -52,11 +52,11 @@ class  veritas_hyperscale::data (
 	if $operation == "dn-add" {
 		# Execute only once.
 		exec {'add-datanode':
-            path   => '/usr/bin:/usr/sbin:/bin',
-            onlyif => "test -f /var/opt/VRTSofcore/ofdb",
-            unless => "grep -q \"DATANODE_$dn_management_ip\" /var/opt/VRTSofcore/ofdb",
+            path        => '/usr/bin:/usr/sbin:/bin',
+            onlyif      => "test -f /var/opt/VRTSofcore/ofdb",
+            unless      => "grep -q \"DATANODE_$dn_management_ip\" /var/opt/VRTSofcore/ofdb",
 			environment => ["HOME=/root", "OS_AUTH_URL=$os_auth_url", "OS_IDENTITY_API_VERSION=$os_identity_api_ver", "OS_USERNAME=$os_user", "OS_PASSWORD=$os_passwd", "OS_PROJECT_DOMAIN_NAME=$os_project_domain_name", "OS_PROJECT_NAME=$os_project_name", "OS_USER_DOMAIN_NAME=$os_user_domain_name"],
-			command => "hyperscale dn-add $dn_management_ip $dn_root_passwd $os_passwd $dn_data_interface 0.0.0.0/24 --data_disks $data_disk_str --meta_disk $meta_disk",
+			command     => "hyperscale dn-add $dn_management_ip $dn_root_passwd $os_passwd $dn_data_interface 0.0.0.0/24 --data_disks $data_disk_str --meta_disk $meta_disk",
 		}
 	}
 }

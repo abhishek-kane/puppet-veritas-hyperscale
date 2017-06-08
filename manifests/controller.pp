@@ -43,30 +43,30 @@ class  veritas_hyperscale::controller (
 		ensure => 'file',
 		before => File['installer'],
 		source => "puppet:///modules/veritas_hyperscale/$bin_name",
-		path => "/$path/$bin_name",
-		owner => 'root',
-		group => 'root',
-		mode => '744',
+		path   => "/$path/$bin_name",
+		owner  => 'root',
+		group  => 'root',
+		mode   => '744',
 	}
 
 	if $operation == "install" {
 		# The input to bin
 		file {'installer':
-			ensure => 'file',
-			source => 'puppet:///modules/veritas_hyperscale/install_bin.sh',
-			path => "/$path/install_bin.sh",
-			owner => 'root',
-			group => 'root',
-			mode => '744',
-			notify => Exec['run_hyperscale_installer'],
+			ensure      => 'file',
+			source      => 'puppet:///modules/veritas_hyperscale/install_bin.sh',
+			path        => "/$path/install_bin.sh",
+			owner       => 'root',
+			group       => 'root',
+			mode        => '744',
+			notify      => Exec['run_hyperscale_installer'],
 		}
 
 		# Execute only once.
 		exec {'run_hyperscale_installer':
-			timeout => '450',
-			creates => '/var/opt/VRTSofcore/ofdb',
+			timeout     => '450',
+			creates     => '/var/opt/VRTSofcore/ofdb',
 			environment => 'HOME=/root',
-			command => "/$path/install_bin.sh /$path/$bin_name $management_ip $os_passwd $mysql_root_passwd",
+			command     => "/$path/install_bin.sh /$path/$bin_name $management_ip $os_passwd $mysql_root_passwd",
 		}
 	}
 }

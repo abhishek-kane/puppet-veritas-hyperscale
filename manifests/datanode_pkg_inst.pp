@@ -1,61 +1,61 @@
 class datanode_pkg_inst {
 	package { 'vrtsofcore':
-		ensure => installed,
+		ensure   => installed,
 		provider => 'rpm',
-		source => 'puppet:///modules/veritas_hyperscale/VRTSofcore-1.1.0.000-RHEL7.x86_64.rpm',
+		source   => 'puppet:///modules/veritas_hyperscale/VRTSofcore-1.1.0.000-RHEL7.x86_64.rpm',
 		}
 
 	package { 'vrtsofdn':
-		ensure => installed,
+		ensure   => installed,
 		provider => 'rpm',
-		source => 'puppet:///modules/veritas_hyperscale/VRTSofdn-1.0.0.000-RHEL7.x86_64',
+		source   => 'puppet:///modules/veritas_hyperscale/VRTSofdn-1.0.0.000-RHEL7.x86_64',
 		}
 
 	package { 'vrtsofmn':
-		ensure => installed,
+		ensure   => installed,
 		provider => 'rpm',
-		source => 'puppet:///modules/veritas_hyperscale/VRTSofmn-1.0.0.000-RHEL7.x86_64',
-		require => Package["vrtsofcore"],
+		source   => 'puppet:///modules/veritas_hyperscale/VRTSofmn-1.0.0.000-RHEL7.x86_64',
+		require  => Package["vrtsofcore"],
 		}
 
 	package { 'vrtsofspt':
-		ensure => installed,
+		ensure   => installed,
 		provider => 'rpm',
-		source => 'puppet:///modules/veritas_hyperscale/VRTSofspt-1.0.0.000-RHEL7.x86_64',
+		source   => 'puppet:///modules/veritas_hyperscale/VRTSofspt-1.0.0.000-RHEL7.x86_64',
 		}
 
 	package { 'python-amqp':
-		ensure => installed,
+		ensure   => installed,
 		provider => 'yum',
 		}
 
 	package { 'python-kombu':
-		ensure => installed,
+		ensure   => installed,
 		provider => 'yum',
 		}
 
 	package { 'python-kazoo':
-		ensure => installed,
+		ensure   => installed,
 		provider => 'yum',
 		}
 
 	package { 'python-anyjson':
-		ensure => installed,
+		ensure   => installed,
 		provider => 'yum',
 		}
 
 	package { 'python-sqlalchemy':
-		ensure => installed,
+		ensure   => installed,
 		provider => 'yum',
 		}
 
 	package { 'lvm2':
-		ensure => installed,
+		ensure   => installed,
 		provider => 'yum',
 		}
 
 	package { 'coreutils':
-		ensure => installed,
+		ensure   => installed,
 		provider => 'yum',
 		}
 }

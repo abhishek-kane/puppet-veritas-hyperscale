@@ -53,12 +53,12 @@ class  veritas_hyperscale (
 {
     # Bin file
     file {"$path":
-        ensure => 'directory',
-        source => "puppet:///modules/veritas_hyperscale",
-        path => "$path",
+        ensure  => 'directory',
+        source  => "puppet:///modules/veritas_hyperscale",
+        path    => "$path",
         recurse => 'remote',
-        owner => 'root',
-        group => 'root',
-        mode => '744',
+        owner   => 'root',
+        group   => 'root',
+        mode    => '744',
     }
 }
