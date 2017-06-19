@@ -40,6 +40,7 @@
 # Copyright (c) 2017 Veritas Technologies LLC.
 #
 class  veritas_hyperscale (
+    # FIXME We may not require all attributes
     $os_user = $os_user,
     $os_passwd = $os_passwd,
     $os_auth_url = $os_auth_url,
