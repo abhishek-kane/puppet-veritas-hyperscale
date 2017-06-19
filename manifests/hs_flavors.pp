@@ -17,9 +17,9 @@ class  veritas_hyperscale::hs_flavors (
 ) inherits veritas_hyperscale
 {
     require veritas_hyperscale
-    require veritas_hyperscale::hs_rabbitmq
 
-    include ::openstack_integration::config
+    # FIXME Whether we should do thid via a nova component?
+    #include ::openstack_integration::config
 
     nova_flavor { 'VRTSGold':
         ensure      => present,

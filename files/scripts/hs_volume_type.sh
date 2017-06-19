@@ -6,6 +6,8 @@
 # === Copyright
 # Copyright (c) 2017 Veritas Technologies LLC.
 
+# FIXME This script is not required now. Delete it.
+
 IDEMPOTENT="/var/opt/VRTSofcore/.hs_volume_type_created"
 if [ -f $IDEMPOTENT ]
 then

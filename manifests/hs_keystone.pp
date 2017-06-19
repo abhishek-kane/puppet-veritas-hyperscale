@@ -26,33 +26,27 @@ class  veritas_hyperscale::hs_keystone (
     require veritas_hyperscale
     require veritas_hyperscale::controller_pkg_inst
 
-    class { '::keystone::service':
-        ensure         => 'running',
-        service_name   => 'hyperscale',
-        enable         => true,
-    }
-
     keystone_user { 'hyperscale':
-        ensure  => present,
-        enabled => true,
-        email   => 'hyperscale@localhost',
+        ensure      => present,
+        enabled     => true,
+        email       => 'hyperscale@localhost',
+        password	=> 'elacsrepyh',
     }
 
-    keystone_user_role { 'hyperscale@default':
+    keystone_user_role { 'hyperscale@service':
         roles   => ['admin'],
         ensure  => present,
-        require => Class['::keystone::roles::admin'],
     }
 
     keystone_user { '_proxy_':
-        ensure  => present,
-        enabled => true,
+        ensure      => present,
+        enabled     => true,
+        password    => 'elacsrepyh',
     }
 
     keystone_user_role { '_proxy_@admin':
         roles   => ['admin'],
         ensure  => present,
-        require => Class['::keystone::roles::admin'],
     }
 
     keystone_role { 'infra_admin':
@@ -60,14 +54,23 @@ class  veritas_hyperscale::hs_keystone (
     }
 
     keystone_user_role { 'admin@admin':
-        roles   => ['infra_admin'],
+        roles   => ['admin', 'infra_admin'],
         ensure  => present,
-        require => Class['::keystone::roles::admin'],
     }
 
-    class { 'keystone::endpoint':
-        public_url   => "http://$keystone_ip:8753/v1/%(tenant_id)s",
-        admin_url    => "http://$keystone_ip:8753/v1/%(tenant_id)s",
-        internal_url => "http://$keystone_ip:8753/v1/%(tenant_id)s",
+    keystone_service { 'hyperscale':
+        name        => 'hyperscale',
+        ensure      => present,
+        description	=> 'HyperScale Infrastructure Service',
+        type    	=> 'infrastructure',
+    }
+
+    keystone_endpoint { 'hyperscale':
+        ensure          => present,
+        type            => 'infrastructure',
+        region	    	=> 'RegionOne',
+        public_url      => "http://$keystone_ip:8753/v1/%(tenant_id)s",
+        admin_url       => "http://$keystone_ip:8753/v1/%(tenant_id)s",
+        internal_url    => "http://$keystone_ip:8753/v1/%(tenant_id)s",
     }
 }

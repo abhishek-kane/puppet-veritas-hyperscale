@@ -35,35 +35,23 @@ class veritas_hyperscale::controller_pkg_inst (
 
 	if $platform == "redhat" {
 		$provider1 = "yum"
-		package { 'vrtsofcore':
+		package { 'VRTSofcore':
 			ensure   => $op,
 			provider => 'rpm',
-			source   => "$path/packages/VRTSofcore-1.0.0.100-RHEL7.x86_64.rpm",
+			source   => "$path/packages/VRTSofcore-1.1.0.000-RHEL7.x86_64.rpm",
 			}
 
-		package { 'vrtsofmn':
+		package { 'VRTSofmn':
 			ensure   => $op,
 			provider => 'rpm',
-			source   => "$path/packages/VRTSofmn-1.0.0.100-RHEL7.x86_64.rpm",
-			require  => Package["vrtsofcore"],
+			source   => "$path/packages/VRTSofmn-1.1.0.000-RHEL7.x86_64.rpm",
+			require  => Package["VRTSofcore"],
 			}
 
-		package { 'vrtsofui':
+		package { 'VRTSofspt':
 			ensure   => $op,
 			provider => 'rpm',
-			source   => "$path/packages/VRTSofui-1.0.0.100-RHEL7.x86_64.rpm",
-			}
-
-		package { 'hyperscale-ceilometer':
-			ensure   => $op,
-			provider => 'rpm',
-			source   => "$path/packages/controller-ceilometer*.rpm",
-			}
-
-		package { 'vrtsofspt':
-			ensure   => $op,
-			provider => 'rpm',
-			source   => "$path/packages/VRTSofspt-1.0.0.100-RHEL7.x86_64.rpm",
+			source   => "$path/packages/VRTSofspt_1.0.0.100-RHEL7.x86_64.rpm",
 			}
 	}
 	else {

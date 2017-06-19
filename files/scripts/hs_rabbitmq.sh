@@ -6,6 +6,8 @@
 # === Copyright
 # Copyright (c) 2017 Veritas Technologies LLC.
 
+# FIXME This script is not required now. Delete it.
+
 IDEMPOTENT="/var/opt/VRTSofcore/.vrts_rabbitmq_configured"
 if [ -f $IDEMPOTENT ]
 then

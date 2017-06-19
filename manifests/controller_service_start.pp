@@ -20,7 +20,8 @@ class veritas_hyperscale::controller_service_start (
 )inherits veritas_hyperscale
 {
     require veritas_hyperscale::controller_pkg_inst
-    require veritas_hyperscale::hs_volume_type
+    require veritas_hyperscale::hs_keystone
+    require veritas_hyperscale::hs_rabbitmq
 
 	service { 'hyperscale-mq-controller':
 		ensure => running,

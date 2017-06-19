@@ -57,8 +57,7 @@ class  veritas_hyperscale (
         source  => "puppet:///modules/veritas_hyperscale",
         path    => "$path",
         recurse => 'remote',
-        owner   => 'root',
-        group   => 'root',
-        mode    => '744',
+        owner   => 'heat-admin',
+        group   => 'heat-admin',
     }
 }
