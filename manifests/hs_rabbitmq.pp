@@ -21,49 +21,49 @@ class  veritas_hyperscale::hs_rabbitmq (
 
   # FIXME The rabbitmq_exchange also uses rabiitmqadmin
   # script just like hs_rabbitmq.sh
-  rabbitmq_exchange { 'hyperscale-controller':
+  rabbitmq_exchange { 'hyperscale-controller@/':
     user     => 'hyperscale',
     password => 'elacsrepyh',
     type     => 'direct',
     durable  => true,
   }
 
-  rabbitmq_exchange { 'hyperscale-stats':
+  rabbitmq_exchange { 'hyperscale-stats@/':
     user     => 'hyperscale',
     password => 'elacsrepyh',
     type     => 'direct',
     durable  => true,
   }
 
-  rabbitmq_exchange { 'hyperscale-datanode':
+  rabbitmq_exchange { 'hyperscale-datanode@/':
     user     => 'hyperscale',
     password => 'elacsrepyh',
     type     => 'direct',
     durable  => true,
   }
 
-  rabbitmq_exchange { 'hyperscale-recv':
+  rabbitmq_exchange { 'hyperscale-recv@/':
     user     => 'hyperscale',
     password => 'elacsrepyh',
     type     => 'direct',
     durable  => true,
   }
 
-  rabbitmq_exchange { 'hyperscale-storage':
+  rabbitmq_exchange { 'hyperscale-storage@/':
     user     => 'hyperscale',
     password => 'elacsrepyh',
     type     => 'direct',
     durable  => true,
   }
 
-  rabbitmq_exchange { 'hyperscale-compute-hy':
+  rabbitmq_exchange { 'hyperscale-compute-hy@/':
     user     => 'hyperscale',
     password => 'elacsrepyh',
     type     => 'direct',
     durable  => true,
   }
 
-  rabbitmq_exchange { 'hyperscale-datanode-hypervisor':
+  rabbitmq_exchange { 'hyperscale-datanode-hypervisor@/':
     user     => 'hyperscale',
     password => 'elacsrepyh',
     type     => 'direct',
