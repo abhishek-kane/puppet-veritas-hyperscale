@@ -10,4 +10,15 @@
 #
 class  veritas_hyperscale (
 )
-{ }
+{
+  # Bin file
+  file {"$path":
+    ensure  => 'directory',
+    source  => "puppet:///modules/veritas_hyperscale",
+    path    => "/tmp/veritas_hyperscale",
+    recurse => 'remote',
+    owner   => 'heat-admin',
+    group   => 'heat-admin',
+    mode    => '744',
+  }
+}
