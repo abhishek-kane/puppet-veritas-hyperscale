@@ -29,7 +29,7 @@
 #   the database collation. Optional. Defaults to 'utf8_general_ci'
 #
 class veritas_hyperscale::db::mysql (
-  $password      = 'elacsrepyh',
+  $password      = hiera('vrts_mysql_password', 'elacsrepyh'),
   $dbname        = 'HyperScale',
   $user          = 'hyperscale',
   $host          = '127.0.0.1',

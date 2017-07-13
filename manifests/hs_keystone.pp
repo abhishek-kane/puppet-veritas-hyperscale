@@ -23,7 +23,7 @@ class  veritas_hyperscale::hs_keystone (
       ensure   => present,
       enabled  => true,
       email    => 'hyperscale@localhost',
-      password => 'elacsrepyh',
+      password => hiera('vrts_keystone_password', 'elacsrepyh'),
     }
 
     keystone_user_role { 'hyperscale@service':
@@ -34,7 +34,7 @@ class  veritas_hyperscale::hs_keystone (
     keystone_user { '_proxy_':
       ensure   => present,
       enabled  => true,
-      password => 'elacsrepyh',
+      password => hiera('vrts_keystone_password', 'elacsrepyh'),
     }
 
     keystone_user_role { '_proxy_@admin':
